@@ -1,3 +1,175 @@
-[gd_scene format=3 uid="uid://bgioafcydwucp"]
+[gd_scene load_steps=12 format=3 uid="uid://bgioafcydwucp"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_g5bvp"]
+[ext_resource type="Texture2D" uid="uid://bclwvkb0gu1cf" path="res://Sprites/Tiles/Grass.png" id="1_lygvr"]
+[ext_resource type="Texture2D" uid="uid://c4kln2orvmwdk" path="res://Sprites/Tiles/TilledGround_Normal.png" id="2_nt8xu"]
+[ext_resource type="Texture2D" uid="uid://shjpr51grekj" path="res://Sprites/Tiles/TilledGround_Watered.png" id="3_w24y7"]
+[ext_resource type="PackedScene" uid="uid://dihj5lls2gb24" path="res://player.tscn" id="4_o15hh"]
+[ext_resource type="Texture2D" uid="uid://bui4352jaxaje" path="res://Sprites/Crops/Crop_Wheat.png" id="5_0wwst"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_87bh3"]
+texture = ExtResource("1_lygvr")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5opng"]
+texture = ExtResource("2_nt8xu")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_2 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bmu0a"]
+texture = ExtResource("3_w24y7")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_3 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ruck"]
+texture = ExtResource("5_0wwst")
+texture_region_size = Vector2i(13, 13)
+0:0/0 = 0
+0:0/0/custom_data_1 = true
+1:0/0 = 0
+1:0/0/custom_data_1 = true
+1:0/0/custom_data_4 = 1
+2:0/0 = 0
+2:0/0/custom_data_1 = true
+2:0/0/custom_data_4 = 2
+3:0/0 = 0
+3:0/0/custom_data_1 = true
+3:0/0/custom_data_4 = 3
+3:0/0/custom_data_5 = true
+
+[sub_resource type="TileSet" id="TileSet_glww6"]
+tile_size = Vector2i(12, 12)
+custom_data_layer_0/name = "can_place_seeds"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "has_seeds"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "can_water"
+custom_data_layer_2/type = 1
+custom_data_layer_3/name = "is_watered"
+custom_data_layer_3/type = 1
+custom_data_layer_4/name = "seed_level"
+custom_data_layer_4/type = 2
+custom_data_layer_5/name = "can_harvest"
+custom_data_layer_5/type = 1
+sources/0 = SubResource("TileSetAtlasSource_87bh3")
+sources/1 = SubResource("TileSetAtlasSource_5opng")
+sources/2 = SubResource("TileSetAtlasSource_bmu0a")
+sources/3 = SubResource("TileSetAtlasSource_5ruck")
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_g5bvp")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_glww6")
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(-1, 0, 0, -65536, 0, 0, 0, 0, 0, 65535, 0, 0, -393228, 0, 0, -393227, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, -393223, 0, 0, -393222, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, -458743, 0, 0, -458742, 0, 0, -458741, 0, 0, -327692, 0, 0, -262156, 0, 0, -196620, 0, 0, -131084, 0, 0, -65548, 0, 0, -12, 0, 0, 65524, 0, 0, 131060, 0, 0, 196596, 0, 0, 262132, 0, 0, 327668, 0, 0, 393204, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 327691, 0, 0, 262155, 0, 0, 196619, 0, 0, 131083, 0, 0, 65547, 0, 0, 11, 0, 0, -65525, 0, 0, -131061, 0, 0, -196597, 0, 0, -262133, 0, 0, -327669, 0, 0, -393205, 0, 0, -65542, 0, 0, -131078, 0, 0, -196614, 0, 0, -262150, 0, 0, -327686, 0, 0, -327687, 0, 0, -327688, 0, 0, -327689, 0, 0, -327690, 0, 0, -327691, 0, 0, -262155, 0, 0, -196619, 0, 0, -131083, 0, 0, -65547, 0, 0, -11, 0, 0, 65525, 0, 0, 131061, 0, 0, 196597, 0, 0, 262133, 0, 0, 327669, 0, 0, 393205, 0, 0, 393206, 0, 0, 327670, 0, 0, 262134, 0, 0, 196598, 0, 0, 131062, 0, 0, 65526, 0, 0, -10, 0, 0, -65546, 0, 0, -131082, 0, 0, -196618, 0, 0, -262154, 0, 0, -262153, 0, 0, -196617, 0, 0, -131081, 0, 0, -65545, 0, 0, -9, 0, 0, 65527, 0, 0, 131063, 0, 0, 196599, 0, 0, 262135, 0, 0, 327671, 0, 0, 393207, 0, 0, 393208, 0, 0, 327672, 0, 0, 262136, 0, 0, 196600, 0, 0, 131064, 0, 0, 65528, 0, 0, -8, 0, 0, -65544, 0, 0, -131080, 0, 0, -196616, 0, 0, -262152, 0, 0, -262151, 0, 0, -196615, 0, 0, -131079, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, 131065, 0, 0, 196601, 0, 0, 262137, 0, 0, 327673, 0, 0, 393209, 0, 0, 393210, 0, 0, 327674, 0, 0, 262138, 0, 0, 196602, 0, 0, 131066, 0, 0, 65530, 0, 0, -6, 0, 0, -5, 0, 0, -65541, 0, 0, -131077, 0, 0, -196613, 0, 0, -262149, 0, 0, -327685, 0, 0, -327684, 0, 0, -262148, 0, 0, -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 65531, 0, 0, 131067, 0, 0, 196603, 0, 0, 262139, 0, 0, 327675, 0, 0, 393211, 0, 0, 393212, 0, 0, 327676, 0, 0, 262140, 0, 0, 196604, 0, 0, 131068, 0, 0, 131069, 0, 0, 65533, 0, 0, -3, 0, 0, -65539, 0, 0, -131075, 0, 0, -196611, 0, 0, -262147, 0, 0, -327683, 0, 0, -327682, 0, 0, -262146, 0, 0, -196610, 0, 0, -131074, 0, 0, -65538, 0, 0, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 196605, 0, 0, 262141, 0, 0, 327677, 0, 0, 393213, 0, 0, 393214, 0, 0, 327678, 0, 0, 262142, 0, 0, 262143, 0, 0, 196607, 0, 0, 131071, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327679, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 262145, 0, 0, 196609, 0, 0, 131073, 0, 0, 65537, 0, 0, 1, 0, 0, -65535, 0, 0, -131071, 0, 0, -196607, 0, 0, -262143, 0, 0, -327679, 0, 0, -393215, 0, 0, -393216, 0, 0, -327681, 0, 0, -262145, 0, 0, -196609, 0, 0, -131073, 0, 0, -65537, 0, 0, -131072, 0, 0, -196608, 0, 0, -262144, 0, 0, -327680, 0, 0, -393214, 0, 0, -327678, 0, 0, -262142, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 327682, 0, 0, 327683, 0, 0, 262147, 0, 0, 196611, 0, 0, 131075, 0, 0, 65539, 0, 0, 3, 0, 0, -65533, 0, 0, -131069, 0, 0, -196605, 0, 0, -262141, 0, 0, -327677, 0, 0, -393213, 0, 0, -393212, 0, 0, -327676, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 327685, 0, 0, 262149, 0, 0, 196613, 0, 0, 131077, 0, 0, 65541, 0, 0, 5, 0, 0, -65531, 0, 0, -131067, 0, 0, -196603, 0, 0, -262139, 0, 0, -327675, 0, 0, -393211, 0, 0, -393210, 0, 0, -327674, 0, 0, -262138, 0, 0, -196602, 0, 0, -131066, 0, 0, -65530, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 327687, 0, 0, 262151, 0, 0, 196615, 0, 0, 131079, 0, 0, 65543, 0, 0, 7, 0, 0, -65529, 0, 0, -131065, 0, 0, -196601, 0, 0, -262137, 0, 0, -327673, 0, 0, -393209, 0, 0, -393208, 0, 0, -327672, 0, 0, -262136, 0, 0, -196600, 0, 0, -131064, 0, 0, -65528, 0, 0, 8, 0, 0, 65544, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 327689, 0, 0, 262153, 0, 0, 196617, 0, 0, 131081, 0, 0, 65545, 0, 0, 9, 0, 0, -65527, 0, 0, -131063, 0, 0, -196599, 0, 0, -262135, 0, 0, -327671, 0, 0, -393207, 0, 0, -393206, 0, 0, -327670, 0, 0, -262134, 0, 0, -196598, 0, 0, -131062, 0, 0, -65526, 0, 0, 10, 0, 0, 65546, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, -589837, 0, 0, 589811, 0, 0, 524300, 0, 0, 524301, 0, 0, -655347, 0, 0, 655347, 0, 0, 655348, 0, 0, 655349, 0, 0, 655350, 0, 0, 655351, 0, 0, 655352, 0, 0, 655353, 0, 0, 655354, 0, 0, 655355, 0, 0, 655356, 0, 0, 655357, 0, 0, 655358, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, -524301, 0, 0, -458765, 0, 0, -393229, 0, 0, -327693, 0, 0, -262157, 0, 0, -196621, 0, 0, -131085, 0, 0, -65549, 0, 0, -13, 0, 0, 65523, 0, 0, 131059, 0, 0, 196595, 0, 0, 262131, 0, 0, 327667, 0, 0, 393203, 0, 0, 458739, 0, 0, 524275, 0, 0, -589836, 0, 0, -589835, 0, 0, -589834, 0, 0, -589833, 0, 0, -589832, 0, 0, -589831, 0, 0, -589830, 0, 0, -589829, 0, 0, -589828, 0, 0, -589827, 0, 0, -589826, 0, 0, -589825, 0, 0, -655360, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -589811, 0, 0, -524275, 0, 0, -458739, 0, 0, -393203, 0, 0, -327667, 0, 0, -262131, 0, 0, -196595, 0, 0, -131059, 0, 0, -65523, 0, 0, 13, 0, 0, 65549, 0, 0, 131085, 0, 0, 196621, 0, 0, 262157, 0, 0, 327693, 0, 0, 393229, 0, 0, 458765, 0, 0, 524299, 0, 0, 458763, 0, 0, 458762, 0, 0, 458761, 0, 0, 458760, 0, 0, 458759, 0, 0, 458758, 0, 0, 458757, 0, 0, 458756, 0, 0, 458755, 0, 0, 458754, 0, 0, 458753, 0, 0, 458752, 0, 0, 524287, 0, 0, 524286, 0, 0, 524285, 0, 0, 524284, 0, 0, 524283, 0, 0, 524282, 0, 0, 524281, 0, 0, 524280, 0, 0, 524279, 0, 0, 524278, 0, 0, 524277, 0, 0, 524276, 0, 0, 589812, 0, 0, 589813, 0, 0, 589814, 0, 0, 589815, 0, 0, 589816, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 458764, 0, 0, 393228, 0, 0, 327692, 0, 0, 262156, 0, 0, 196620, 0, 0, 131084, 0, 0, 65548, 0, 0, 12, 0, 0, -65524, 0, 0, -131060, 0, 0, -196596, 0, 0, -262132, 0, 0, -327668, 0, 0, -393204, 0, 0, -458740, 0, 0, -524276, 0, 0, -589812, 0, 0, -589813, 0, 0, -589814, 0, 0, -589815, 0, 0, -589816, 0, 0, -589817, 0, 0, -589818, 0, 0, -589819, 0, 0, -589820, 0, 0, -589821, 0, 0, -589822, 0, 0, -589823, 0, 0, -589824, 0, 0, -524289, 0, 0, -524290, 0, 0, -524291, 0, 0, -524292, 0, 0, -524293, 0, 0, -524294, 0, 0, -524295, 0, 0, -524296, 0, 0, -524297, 0, 0, -524298, 0, 0, -524299, 0, 0, -524300, 0, 0, -458764, 0, 0, -458763, 0, 0, -458762, 0, 0, -458761, 0, 0, -458760, 0, 0, -458759, 0, 0, -458758, 0, 0, -458757, 0, 0, -458756, 0, 0, -458755, 0, 0, -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -524283, 0, 0, -524282, 0, 0, -524281, 0, 0, -524280, 0, 0, -524279, 0, 0, -524278, 0, 0, -524277, 0, 0)
+layer_1/name = "Crops"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+
+[node name="Player" parent="." instance=ExtResource("4_o15hh")]
+z_index = 2
+scale = Vector2(1, 0.990386)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Day" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 580.0
+offset_right = 59.0
+offset_bottom = 603.0
+text = "Day 0 "
+
+[node name="Next Day" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 605.0
+offset_right = 91.0
+offset_bottom = 636.0
+text = "Next Day"
+
+[node name="Shop" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 605.0
+offset_right = 180.0
+offset_bottom = 636.0
+action_mode = 0
+text = "Shop"
+
+[node name="Seedx5" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 605.0
+offset_right = 215.0
+offset_bottom = 636.0
+action_mode = 0
+text = "x5"
+
+[node name="Tool" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 556.0
+offset_right = 49.0
+offset_bottom = 579.0
+text = "Tool: Dirt"
+
+[node name="Money" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 532.0
+offset_right = 64.0
+offset_bottom = 555.0
+text = "Money: $0"
+
+[node name="Seeds" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 511.0
+offset_right = 74.0
+offset_bottom = 534.0
+text = "Seeds: 0"
+
+[node name="Time" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 25.0
+offset_right = 604.0
+offset_bottom = 51.0
+scale = Vector2(2, 2)
+text = "Time Left: 60"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="Shadow" type="PointLight2D" parent="."]
+scale = Vector2(3.16057, 2.09288)
+color = Color(0.0961946, 0.232453, 0.307675, 1)
+energy = 1.19
+blend_mode = 1
+shadow_enabled = true
+texture = ExtResource("3_w24y7")
+texture_scale = 16.33
+
+[connection signal="pressed" from="CanvasLayer/Control/Next Day" to="." method="_on_next_day_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Seedx5" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Seedx5" to="." method="_on_seedx_5_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
