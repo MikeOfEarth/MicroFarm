@@ -170,6 +170,6 @@ texture_scale = 16.33
 
 [connection signal="pressed" from="CanvasLayer/Control/Next Day" to="." method="_on_next_day_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Shop" to="." method="_on_shop_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Seedx5" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Seedx5" to="." method="_on_seedx_5_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Seedx5" to="." method="_on_shop_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
